@@ -1,11 +1,635 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Jesupemi Portfolio</title>
-</head>
-<body>
-    
-</body>
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@<version>/build/three.module.js",
+          "three/addons/": "https://cdn.jsdelivr.net/npm/three@<version>/examples/jsm/"
+        }
+      }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+      @theme {
+        --color-smart-blue: #0466c8;
+        --color-sapphire: #0353a4;
+        --color-regal-navy: #023e7d;
+        --color-prussian: #002855;
+        --color-prussian-2: #001845;
+        --color-prussian-3: #001233;
+        --color-twilight: #33415c;
+        --color-blue-slate: #5c677d;
+        --color-slate-grey: #7d8597;
+        --color-lav-grey: #979dac;
+        --font-display: "Syne", sans-serif;
+        --font-body: "DM Sans", sans-serif;
+      }
+    </style>
+
+    <link rel="stylesheet" href="portfolio.css" />
+  </head>
+  <body>
+    <!-- Three.js canvas -->
+    <canvas id="bg-canvas"></canvas>
+    <!-- Ambient orbs -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb2"></div>
+    <!-- Navbar section -->
+    <nav class="glass-nav fixed top-0 left-0 right-0 z-50">
+      <div
+        class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between"
+      >
+        <!-- logo -->
+        <a
+          href="#hero"
+          class="font-display font-800 text-xl text-white tracking-tight"
+          >J <span class="text-smart-blue">.</span></a
+        >
+
+        <ul class="hidden md:flex items-center gap-8 list-none m-0 p-0">
+          <li>
+            <a href="#about" class="nav-link text-sm font-body font-medium"
+              >About</a
+            >
+          </li>
+          <li>
+            <a href="#projects" class="nav-link text-sm font-body font-medium"
+              >Projects</a
+            >
+          </li>
+          <li>
+            <a href="#skills" class="nav-link text-sm font-body font-medium"
+              >Skills</a
+            >
+          </li>
+          <li>
+            <a href="#contact" class="nav-link text-sm font-body font-medium"
+              >Contact</a
+            >
+          </li>
+        </ul>
+        <a href="#contact" class="hidden md:inline-block btn-primary text-sm"
+          >Hire Me</a
+        >
+
+        <!-- Mobile Hamburger -->
+        <button
+          id="menuToggle"
+          class="md:hidden text-lav-grey focus:outline-none"
+          aria-label="Toggle menu"
+        >
+          <svg
+            width="24"
+            height="24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
+        </button>
+      </div>
+      <!-- Mobile Menu -->
+      <div id="mobileMenu" class="flex-col px-6 pb-5 gap-4 md:hidden">
+        <a href="#about" class="nav-link text-sm py-1 block">About</a>
+        <a href="#projects" class="nav-link text-sm py-1 block">Projects</a>
+        <a href="#skills" class="nav-link text-sm py-1 block">Skills</a>
+        <a href="#contact" class="nav-link text-sm py-1 block">Hire Me</a>
+      </div>
+    </nav>
+    <!-- Hero Section -->
+    <section
+      id="hero"
+      class="min-h-screen flex items-center justify-center px-6 pt-24"
+    >
+      <div class="max-w-4xl mx-auto text-center">
+        <p
+          class="fade-up delay-1 text-smart-blue font-body font-medium text-sm tracking-widest uppercase mb-4"
+        >
+          Welcome to my portfolio
+        </p>
+        <h1
+          class="fade-up delay-2 font-display font-extrabold text-5xl md:text-7xl leading-tight mb-6"
+        >
+          Hi, I'm <span>Jesupemi</span>
+        </h1>
+        <!-- Typewriter p -->
+        <p
+          class="fade-up delay-3 font-body text-lg md:text-xl text-lav-grey mb-10"
+        >
+          I build&nbsp;<span
+            id="typewriter"
+            class="text-white font-medium"
+          ></span
+          ><span class="cursor-blink"></span>
+        </p>
+        <div class="fade-up delay-4 flex flex-wrap gap-4 justify-center">
+          <a href="#projects" class="btn-primary">View My Work</a>
+          <a href="#contact" class="btn-ghost">Let's Talk</a>
+        </div>
+      </div>
+    </section>
+    <!-- About section -->
+    <section id="section" class="py-28 px-6">
+      <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-14 items-center">
+        <!-- Left side -->
+        <div class="reveal">
+          <p
+            class="text-smart-blue font-body font-medium text-sm tracking-widest uppercase mb-3"
+          >
+            About Me
+          </p>
+          <h2
+            class="font-display font-bold text-4xl md:text-5xl text-white mb-6"
+          >
+            Crafting digital <br /><span class="grad-text">experiences</span>
+          </h2>
+          <p class="font-body text-lav-grey leading-relaxed mb-4">
+            I'm Jesupemi, a passionate developer and designer who loves turning
+            ideas into polished, interactive products. I thrive at the
+            intersection of clean code and thoughtful design.
+          </p>
+          <p class="font-body text-lav-grey leading-relaxed mb-8">
+            I love exploring new web technologies
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <span class="skill-badge">JavaScript</span
+            ><span class="skill-badge">React</span
+            ><span class="skill-badge">TailwindCSS</span
+            ><span class="skill-badge">Three.js</span
+            ><span class="skill-badge">UI/UX Design</span
+            ><span class="skill-badge">TypeScript</span>
+          </div>
+        </div>
+        <!-- Right side -->
+        <div class="reveal card-3d glass p-8" id="aboutCard">
+          <div class="card-inner">
+            <!-- my photo -->
+            <div
+              class="w-24 h-24 rounded-full mb-6 mx-auto flex items-center justify-center"
+            >
+              J
+            </div>
+            <h3
+              class="font-display font-bold text-xl text-white text-center mb-1"
+            >
+              Jesupemi Olajitan
+            </h3>
+            <p class="font-body text-blue-slate text-sm text-center mb-6">
+              Frontend Developer · Designer
+            </p>
+            <ul class="space-y-3 text-sm">
+              <li class="flex items-center gap-3 text-lav-grey">
+                <span class="text-smart-blue">★</span>Lagos, Nigeria
+              </li>
+              <li class="flex items-center gap-3 text-lav-grey">
+                <span class="text-smart-blue">★</span>Computer Science student
+              </li>
+              <li class="flex items-center gap-3 text-lav-grey">
+                <span class="text-smart-blue">★</span>Open to Opportunities
+              </li>
+              <li class="flex items-center gap-3 text-lav-grey">
+                <span class="text-smart-blue">★</span>1+ year of designing &
+                building
+              </li>
+            </ul>
+            <a href="#" class="btn-primary block text-center mt-7 text-sm"
+              >Download CV</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Projects -->
+    <section id="projects" class="py-28 px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="reveal text-center mb-14">
+          <p
+            class="text-smart-blue font-body font-medium text-sm tracking-widest uppercase"
+          >
+            Portfolio
+          </p>
+          <h2 class="font-display font-bold text-4xl md:text-5xl text-white">
+            Selected <span class="grad-text">Projects</span>
+          </h2>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-7">
+          <!-- Card -->
+          <!-- Project 1 -->
+          <div class="reveal card-3d glass p-6 flex flex-col gap-4">
+            <div class="card-inner flex flex-col gap-4 h-full">
+              <div
+                class="w-full h-40 rounded-xl flex items-center justify-center text-4xl"
+              >
+                <!-- photo -->
+                photo
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <span class="skill-badge">React</span>
+                <span class="skill-badge">Node.js</span>
+              </div>
+              <h3 class="font-display font-bold text-lg text-white">
+                E-commerce Platform
+              </h3>
+              <p
+                class="font-body text-blue-slate text-sm leading-relaxed flex-1"
+              >
+                A full-stack shopping experience with real-time cart, Stripe
+                payments and an admin dashboard.
+              </p>
+              <div class="flex gap-3 mt-auto">
+                <a href="" class="btn-primary">Live Demo</a>
+                <a href="" class="btn-ghost">GitHub</a>
+              </div>
+            </div>
+          </div>
+          <!-- Project 2 -->
+          <div class="reveal card-3d glass p-6 flex flex-col gap-4">
+            <div class="card-inner flex flex-col gap-4 h-full">
+              <div
+                class="w-full h-40 rounded-xl flex items-center justify-center text-4xl"
+              >
+                <!-- photo -->
+                photo
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <span class="skill-badge">React</span>
+                <span class="skill-badge">Node.js</span>
+              </div>
+              <h3 class="font-display font-bold text-lg text-white">
+                E-commerce Platform
+              </h3>
+              <p
+                class="font-body text-blue-slate text-sm leading-relaxed flex-1"
+              >
+                A full-stack shopping experience with real-time cart, Stripe
+                payments and an admin dashboard.
+              </p>
+              <div class="flex gap-3 mt-auto">
+                <a href="" class="btn-primary">Live Demo</a>
+                <a href="" class="btn-ghost">GitHub</a>
+              </div>
+            </div>
+          </div>
+          <!-- Project 3 -->
+          <div class="reveal card-3d glass p-6 flex flex-col gap-4">
+            <div class="card-inner flex flex-col gap-4 h-full">
+              <div
+                class="w-full h-40 rounded-xl flex items-center justify-center text-4xl"
+              >
+                <!-- photo -->
+                photo
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <span class="skill-badge">React</span>
+                <span class="skill-badge">Node.js</span>
+              </div>
+              <h3 class="font-display font-bold text-lg text-white">
+                E-commerce Platform
+              </h3>
+              <p
+                class="font-body text-blue-slate text-sm leading-relaxed flex-1"
+              >
+                A full-stack shopping experience with real-time cart, Stripe
+                payments and an admin dashboard.
+              </p>
+              <div class="flex gap-3 mt-auto">
+                <a href="" class="btn-primary">Live Demo</a>
+                <a href="" class="btn-ghost">GitHub</a>
+              </div>
+            </div>
+          </div>
+          <!-- Project 4 -->
+          <div class="reveal card-3d glass p-6 flex flex-col gap-4">
+            <div class="card-inner flex flex-col gap-4 h-full">
+              <div
+                class="w-full h-40 rounded-xl flex items-center justify-center text-4xl"
+              >
+                <!-- photo -->
+                photo
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <span class="skill-badge">React</span>
+                <span class="skill-badge">Node.js</span>
+              </div>
+              <h3 class="font-display font-bold text-lg text-white">
+                E-commerce Platform
+              </h3>
+              <p
+                class="font-body text-blue-slate text-sm leading-relaxed flex-1"
+              >
+                A full-stack shopping experience with real-time cart, Stripe
+                payments and an admin dashboard.
+              </p>
+              <div class="flex gap-3 mt-auto">
+                <a href="" class="btn-primary">Live Demo</a>
+                <a href="" class="btn-ghost">GitHub</a>
+              </div>
+            </div>
+          </div>
+          <!-- Project 5 -->
+          <div class="reveal card-3d glass p-6 flex flex-col gap-4">
+            <div class="card-inner flex flex-col gap-4 h-full">
+              <div
+                class="w-full h-40 rounded-xl flex items-center justify-center text-4xl"
+              >
+                <!-- photo -->
+                photo
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <span class="skill-badge">React</span>
+                <span class="skill-badge">Node.js</span>
+              </div>
+              <h3 class="font-display font-bold text-lg text-white">
+                E-commerce Platform
+              </h3>
+              <p
+                class="font-body text-blue-slate text-sm leading-relaxed flex-1"
+              >
+                A full-stack shopping experience with real-time cart, Stripe
+                payments and an admin dashboard.
+              </p>
+              <div class="flex gap-3 mt-auto">
+                <a href="" class="btn-primary">Live Demo</a>
+                <a href="" class="btn-ghost">GitHub</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="py-28 px-6">
+      <div class="max-w-5xl mx-auto">
+        <div class="reveal text-center mb-14">
+          <p
+            class="text-smart-blue font-body font-medium text-sm tracking-widest uppercase mb-3"
+          >
+            Expertise
+          </p>
+          <h2 class="font-display font-bold text-4xl md:text-5xl text-white">
+            Skills &amp; <span class="grad-text">Technologies</span>
+          </h2>
+        </div>
+        <div class="glass p-8 md:p-12 reveal">
+          <!-- skills buttons -->
+          <div class="flex flex-wrap gap-3 mb-10">
+            <button class="skill-tab btn-primary text-sm" data-tab="frontend">
+              Frontend</button
+            ><button class="skill-tab btn-ghost text-sm" data-tab="backend">
+              Backend</button
+            ><button class="skill-tab btn-ghost text-sm" data-tab="tools">
+              Tools
+            </button>
+          </div>
+          <!-- skills panels -->
+          <div id="tabFrontend" class="skill-panel space-y-5">
+            <div class="skill-row">
+              <div class="flex justify-between text-sm font-body mb-1">
+                <span class="text-lav-grey">React/Next.js</span>
+                <span class="text-smart-blue">90%</span>
+              </div>
+              <div class="bar-track">
+                <div class="bar-fill" data-width="90"></div>
+              </div>
+            </div>
+
+            <div class="skill-row">
+              <div class="flex justify-between text-sm font-body mb-1">
+                <span class="text-lav-grey">React/Next.js</span>
+                <span class="text-smart-blue">90%</span>
+              </div>
+              <div class="bar-track">
+                <div class="bar-fill" data-width="95"></div>
+              </div>
+            </div>
+
+            <div class="skill-row">
+              <div class="flex justify-between text-sm font-body mb-1">
+                <span class="text-lav-grey">React/Next.js</span>
+                <span class="text-smart-blue">90%</span>
+              </div>
+              <div class="bar-track">
+                <div class="bar-fill" data-width="85"></div>
+              </div>
+            </div>
+
+            <div class="skill-row">
+              <div class="flex justify-between text-sm font-body mb-1">
+                <span class="text-lav-grey">React/Next.js</span>
+                <span class="text-smart-blue">90%</span>
+              </div>
+              <div class="bar-track">
+                <div class="bar-fill" data-width="70"></div>
+              </div>
+            </div>
+          </div>
+          <div id="tabBackend" class="hidden skill-panel space-y-5">
+            <div class="skill-row">
+              <div class="flex justify-between text-sm font-body mb-1">
+                <span class="text-lav-grey">React/Next.js</span>
+                <span class="text-smart-blue">90%</span>
+              </div>
+              <div class="bar-track">
+                <div class="bar-fill" data-width="95"></div>
+              </div>
+            </div>
+
+            <div class="skill-row">
+              <div class="flex justify-between text-sm font-body mb-1">
+                <span class="text-lav-grey">React/Next.js</span>
+                <span class="text-smart-blue">90%</span>
+              </div>
+              <div class="bar-track">
+                <div class="bar-fill" data-width="90"></div>
+              </div>
+            </div>
+
+            <div class="skill-row">
+              <div class="flex justify-between text-sm font-body mb-1">
+                <span class="text-lav-grey">React/Next.js</span>
+                <span class="text-smart-blue">90%</span>
+              </div>
+              <div class="bar-track">
+                <div class="bar-fill" data-width="95"></div>
+              </div>
+            </div>
+
+            <div class="skill-row">
+              <div class="flex justify-between text-sm font-body mb-1">
+                <span class="text-lav-grey">React/Next.js</span>
+                <span class="text-smart-blue">90%</span>
+              </div>
+              <div class="bar-track">
+                <div class="bar-fill" data-width="95"></div>
+              </div>
+            </div>
+          </div>
+          <div id="tabTools" class="skill-panel hidden space-y-5">
+            <div class="skill-row">
+              <div class="flex justify-between text-sm font-body mb-1">
+                <span class="text-lav-grey">React/Next.js</span>
+                <span class="text-smart-blue">90%</span>
+              </div>
+              <div class="bar-track">
+                <div class="bar-fill" data-width="95"></div>
+              </div>
+            </div>
+
+            <div class="skill-row">
+              <div class="flex justify-between text-sm font-body mb-1">
+                <span class="text-lav-grey">React/Next.js</span>
+                <span class="text-smart-blue">90%</span>
+              </div>
+              <div class="bar-track">
+                <div class="bar-fill" data-width="90"></div>
+              </div>
+            </div>
+
+            <div class="skill-row">
+              <div class="flex justify-between text-sm font-body mb-1">
+                <span class="text-lav-grey">React/Next.js</span>
+                <span class="text-smart-blue">90%</span>
+              </div>
+              <div class="bar-track">
+                <div class="bar-fill" data-width="95"></div>
+              </div>
+            </div>
+
+            <div class="skill-row">
+              <div class="flex justify-between text-sm font-body mb-1">
+                <span class="text-lav-grey">React/Next.js</span>
+                <span class="text-smart-blue">90%</span>
+              </div>
+              <div class="bar-track">
+                <div class="bar-fill" data-width="95"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--stats row  -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-5 mt-8">
+          <div class="reveal glass p-6 text-center">
+            <p class="font-display font-extrabold text-4xl grad-text">1+</p>
+            <p class="font-body text-blue-slate text-sm mt-1">
+              Years Experience
+            </p>
+          </div>
+          <div class="reveal glass p-6 text-center">
+            <p class="font-display font-extrabold text-4xl grad-text">2+</p>
+            <p class="font-body text-blue-slate text-sm mt-1">
+              Projects Shipped
+            </p>
+          </div>
+          <div class="reveal glass p-6 text-center">
+            <p class="font-display font-extrabold text-4xl grad-text">2+</p>
+            <p class="font-body text-blue-slate text-sm mt-1">Happy Clients</p>
+          </div>
+          <div class="reveal glass p-6 text-center">
+            <p class="font-display font-extrabold text-4xl grad-text">∞</p>
+            <p class="font-body text-blue-slate text-sm mt-1">Cups of coffee</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- contact section -->
+    <section id="contact" class="py-28 px-6">
+      <div class="max-w-3xl mx-auto">
+        <div class="reveal text-center mb-14">
+          <p
+            class="text-smart-blue font-body font-medium text-sm tracking-widest uppercase mb-3"
+          >
+            Get in touch with me!
+          </p>
+          <h2 class="font-display font-bold text-4xl md:text-5xl text-white">
+            Let's <span class="grad-text">Work Together</span>
+          </h2>
+          <p class="font-body text-blue-slate mt-4">
+            Have a project in mind or just want to say hello? My inbox is always
+            open.
+          </p>
+        </div>
+        <div class="reveal glass p-8 md:p-12">
+          <div>
+            <label for="" class="block font-body text-lav-grey text-sm mb-2"
+              >Name</label
+            >
+            <input
+              type="text"
+              name=""
+              id=""
+              class="contact-input"
+              placeholder="Your name"
+            />
+          </div>
+          <div>
+            <label for="" class="block font-body text-lav-grey text-sm mb-2"
+              >Email</label
+            ><input
+              type="email"
+              name=""
+              id=""
+              class="contact-input"
+              placeholder="your@email.com"
+            />
+          </div>
+          <div>
+            <label for="" class="block font-body text-lav-grey text-sm mb-2"
+              >Subject</label
+            ><input
+              type="text"
+              name=""
+              id=""
+              class="contact-input"
+              placeholder="What's this about?"
+            />
+          </div>
+          <div>
+            <label for="" class="block font-body text-lav-grey text-sm mb-2"
+              >Message</label
+            ><textarea
+              name=""
+              id=""
+              class="contact-input resize-none"
+              placeholder="Tell me about your project..."
+            ></textarea>
+          </div>
+          <button id="sendBtn" class="btn-primary w-full text-base">
+            Send Message
+          </button>
+          <!-- Success Message -->
+          <div
+            id="sendSuccess"
+            class="mt-5 text-center font-body text-sm text-smart-blue hidden"
+          >
+            Message sent!! I'll get back to you shortly.
+          </div>
+        </div>
+        <!-- social links -->
+        <div class="reveal flex justify-center gap-6 mt-10">
+          <a href="#" class="skill-badge hover:text-white transition-colors">GitHub</a>
+          <a href="#" class="skill-badge hover:text-white transition-colors">Linkedn</a>
+          <a href="mailto:devjesupemii19@gmail.com" class="skill-badge hover:text-white transition-colors">Email</a>
+        </div>
+      </div>
+    </section>
+    <!-- footer -->
+    <footer class="text-center py-8 px-6 border-t border-prussian-2 font-body text-blue-slate text-sm">
+      <p>Designed &amp; built by <span class="text-smart-blue font-medium">Jesupemi Olajitan</span> · 2026</p>
+    </footer>
+  </body>
 </html>
