@@ -46,11 +46,11 @@ body {
   transition: transform 0.4s;
 }
 .reveal {
-  /* opacity: 0;
+  opacity: 0;
   transform: translateY(40px);
   transition:
     opacity 0.7s ease,
-    transform 0.7s ease; */
+    transform 0.7s ease;
 }
 .reveal.visible {
   opacity: 1;
@@ -184,24 +184,24 @@ body {
   color: #e2e8f0;
   border-color: #0466c8;
 }
-.bar-track{
-    background: rgba(255,255,255,0.8);
-    border-radius: 9999px;
-    height: 6px;
-    overflow: hidden;
+.bar-track {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 9999px;
+  height: 6px;
+  overflow: hidden;
 }
-.bar-fill{
-    height: 100%;
-    border-radius: 9999px;
-    background: linear-gradient(90deg, #0466c8,#5c677d);
-    width: 0;
-    transition: width 1.2s cubic-bezier(0.25, 0.8, 0.25,1);
+.bar-fill {
+  height: 100%;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #0466c8, #5c677d);
+  width: 0;
+  transition: width 1.2s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
-#mobileMenu{
-    display: none;
+#mobileMenu {
+  display: none;
 }
-#mobileMenu.open{
-    display: flex;
+#mobileMenu.open {
+  display: flex;
 }
 .contact-input {
   width: 100%;
@@ -234,4 +234,44 @@ body {
 ::webkit-scrollbar-thumb {
   background: #0353a4;
   border-radius: 3px;
+}
+.orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(90px);
+  pointer-events: none;
+  z-index: 0;
+  animation: drift 12s ease-in-out infinite alternate;
+}
+.orb-1 {
+  width: 500px;
+  height: 500px;
+  background: rgba(4, 102, 200, 0.12);
+  top: -100px;
+  left: -150px;
+}
+.orb-2 {
+  width: 400px;
+  height: 400px;
+  background: rgba(3, 83, 164, 0.1);
+  bottom: -80px;
+  right: -100px;
+  animation-delay: -6s;
+}
+@keyframes drift {
+  from {
+    transform: translate(0, 0) scale(1);
+  }
+  to {
+    transform: translate(40px, 30px) scale(1.08);
+  }
+}
+
+section {
+  position: relative;
+  z-index: 1;
+}
+nav {
+  position: relative;
+  z-index: 50;
 }
